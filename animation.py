@@ -255,7 +255,7 @@ class Numbers(Animation):
         self.available = "0123456789abcdef -A"
         self.color = color
         self.segments_for_digits = [
-            # 1, 2, 3, 4, 5, 6, 7
+            #1, 2, 3, 4, 5, 6, 7
             [1, 1, 1, 1, 1, 1, 0, 0],  # 0
             [0, 0, 0, 1, 1, 0, 0, 0],  # 1
             [1, 0, 1, 1, 0, 1, 1, 0],  # 2
