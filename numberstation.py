@@ -168,7 +168,7 @@ numbers = [
 backgroundQueue = Queue(maxsize=500)
 priorityQueue = Queue(maxsize=250)
 
-dmx = DMX('127.0.0.1', maxchan=264, universe=0)
+dmx = DMX('127.0.0.1', maxchan=264, universe=1)
 
 for digit in range(11):
     for segment in range(8):
@@ -178,4 +178,4 @@ threading.Thread(target=queue_worker, daemon=True).start()
 
 dmx.start()
 
-run(host='0.0.0.0', port=8080, reloader=False, debug=True, server=GeventWebSocketServer)
+run(host='127.0.0.1', port=8080, reloader=False, debug=True, server=GeventWebSocketServer)

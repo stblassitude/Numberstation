@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Numberstation web service and DMX controller
+
+[Service]
+Type=simple
+WorkingDirectory=%h/working/Numberstation
+ExecStart=poetry run python numberstation.py
+Restart=always
+
+[Install]
+WantedBy=default.target
+
