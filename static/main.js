@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     let updateStatsWs = function() {
     let url = (location.protocol == 'https:' ? 'wss' : 'ws')
-      + '://' + location.host + location.pathname + 'ws'
+      + '://' + location.host + '/ws'
     ws = new WebSocket(url);
     ws.onopen = function(e) {
       //updateConnected(true);
