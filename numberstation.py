@@ -44,7 +44,7 @@ def coming_up():
     c = list(priorityQueue.queue)
     c.extend(list(backgroundQueue.queue))
     if len(c) == 0:
-        coming_up = [PlaceholderNumber()]
+        c = [PlaceholderNumber()]
     return c
 
 current_number = None
