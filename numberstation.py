@@ -40,12 +40,12 @@ class PlaceholderNumber(Number):
         return "???"
 
 
-def get_coming_up():
-    coming_up = list(priorityQueue.queue)
-    coming_up.extend(list(backgroundQueue.queue))
-    if len(coming_up) == 0:
+def coming_up():
+    c = list(priorityQueue.queue)
+    c.extend(list(backgroundQueue.queue))
+    if len(c) == 0:
         coming_up = [PlaceholderNumber()]
-    return coming_up
+    return c
 
 current_number = None
 interval = 10
@@ -57,7 +57,7 @@ clients = []
 def index():
     return {
         'current': current_number,
-        'coming_up': get_coming_up(),
+        'coming_up': coming_up(),
     }
 
 
@@ -66,7 +66,7 @@ def index():
 def index():
     return {
         'current': current_number,
-        'coming_up': get_coming_up(),
+        'coming_up': coming_up(),
     }
 
 
@@ -118,7 +118,6 @@ def server_static(filename):
 
 
 def number_to_json(number):
-    coming_up = get_coming_up()
     return json.dumps({
         'number': {
             'description': current_number.description,
@@ -136,7 +135,7 @@ def number_to_json(number):
             'initial': n.initial,
             'description': n.description,
             'color': {'r': n.color[0], 'g': n.color[1], 'b': n.color[2]},
-        } for n in coming_up]
+        } for n in coming_up()]
     })
 
 def send_ws():
