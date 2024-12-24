@@ -170,7 +170,7 @@ numbers = [
 backgroundQueue = Queue(maxsize=500)
 priorityQueue = Queue(maxsize=250)
 
-dmx = DMX('127.0.0.1', maxchan=264, universe=1)
+dmx = DMX('127.0.0.1', maxchan=264, universe=1, refresh_rate=5)
 
 for digit in range(11):
     for segment in range(8):
