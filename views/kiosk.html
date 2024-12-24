@@ -1,0 +1,88 @@
+<html>
+
+<head>
+    <title>Panumba Numberstation</title>
+    <!--meta http-equiv="refresh" content="5"-->
+    <script src="/static/main.js"></script>
+    <style>
+        body {
+            background-color: black;
+
+            height: 100vh;
+            margin: 0;
+            overflow: auto;
+            padding: 2rem;
+            color: #0f0;
+            font-family: 'Inconsolata', monospace;
+            font-size: 1.3rem;
+            text-shadow: 0 0 5px #C8C8C8;
+        }
+
+        #current {
+            font: 64px 'Inconsolata', monospace;
+            text-align: center;
+        }
+
+        #current_number {
+            padding: 8px 12px;
+            font: 300% 'Arial Black', Arial, sans-serif;
+        }
+
+        .qr {
+            text-align: center;
+            float: right;
+        }
+        .qr img {
+            width: 50%;
+        }
+
+        .blinking {
+            color: green;
+            font-weight: bold;
+
+
+            animation: blinkingCursor 1s infinite;
+        }
+
+        @keyframes blinkingCursor {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+        #current_description {
+            min-height: 2em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>panumba.de Numberstation</h1>
+
+    <div id="current">
+        <div id="current_number" style="color: rgb{{current.color}}">{{ current.now }}</div>
+        <h2 id="current_description">{{ current.description }}</h2>
+    </div>
+
+    <h2 class="blinking">Coming Up</h2>
+    <ol id="coming_up">
+        %for n in coming_up:
+        <li>{{ n.description }}: <span style="color: rgb{{n.color}}; background-color: black; padding: 4px 12px;">{{ n.now }}</span></li>
+        %end
+    </ol>
+
+    <div class="explanation">
+        <h2>Displaying your own number</h2>
+        <p>
+            To display your own number, go to https://panumba.de.
+        </p>
+    </div>
+</body>
+
+</html>
