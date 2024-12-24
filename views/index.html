@@ -19,13 +19,13 @@
         }
 
         #current {
-            font: 64px 'Inconsolata', monospace;
+            font: 48px 'Inconsolata', monospace;
             text-align: center;
         }
 
         #current_number {
             padding: 8px 12px;
-            font: 300% 'Arial Black', Arial, sans-serif;
+            font: 200% 'Arial Black', Arial, sans-serif;
         }
 
         .qr {
@@ -55,24 +55,22 @@
                 opacity: 0;
             }
         }
+        #current_description {
+            min-height: 2em;
+        }
     </style>
 </head>
 
 <body>
 
-    <h1>Panumba Numberstation</h1>
+    <h1>panumba.de Numberstation</h1>
 
     <div id="current">
         <div id="current_number" style="color: rgb{{current.color}}">{{ current.now }}</div>
         <h2 id="current_description">{{ current.description }}</h2>
     </div>
 
-    <div class="qr">
-        <p>scan this QR and ask AI for a number:</p>
-        <!-- qr to heroku question terminal (herokurl): -->
-        <a href="https://question.panumba.de" target="_blank"><img src="static/question.panumba.de.png" alt="question.panumba.de"></a>
-    </div>
-    <h2 class="blinking">Coming Up</h2>
+    <h2>Coming Up</h2>
     <ol id="coming_up">
         %for n in coming_up:
         <li>{{ n.description }}: <span style="color: rgb{{n.color}}; background-color: black; padding: 4px 12px;">{{ n.now }}</span></li>
@@ -80,9 +78,9 @@
     </ol>
 
     <div class="explanation">
-        <h2 class="blinking">Displaying your own number</h2>
+        <h2>Displaying your own number</h2>
         <p>
-            To display your own number, request the url <tt>/number</tt> with these query string parameters:
+            To display your own number, request the url <a href="/number">https://panumba.de/number</a> with these query string parameters:
         </p>
         <ul>
             <li>n: the number to display. The system can only display integers, but they can be negative. Up to 11

@@ -27,6 +27,25 @@ class Number:
             return self.initial + int((datetime.now() - self.t0).total_seconds() * self.increment)
         return self.initial
 
+class PlaceholderNumber(Number):
+    def __init__(self):
+        self.description = 'A random fact'
+        self.initial = '???'
+        self.color = (128, 128, 128)
+        self.increment = 0
+        self.t0 = datetime.now()
+        self.animation = GrowingNumbers(0, self.color, self.increment, self.t0)
+
+    def now(self):
+        return "???"
+
+
+def get_coming_up():
+    coming_up = list(priorityQueue.queue)
+    coming_up.extend(list(backgroundQueue.queue))
+    if len(coming_up) == 0:
+        coming_up = [PlaceholderNumber()]
+    return coming_up
 
 current_number = None
 interval = 10
@@ -36,11 +55,18 @@ clients = []
 @route('/')
 @view('index')
 def index():
-    coming_up = list(priorityQueue.queue)
-    coming_up.extend(list(backgroundQueue.queue))
     return {
         'current': current_number,
-        'coming_up': coming_up,
+        'coming_up': get_coming_up(),
+    }
+
+
+@route('/kiosk')
+@view('kiosk')
+def index():
+    return {
+        'current': current_number,
+        'coming_up': get_coming_up(),
     }
 
 
@@ -92,8 +118,7 @@ def server_static(filename):
 
 
 def number_to_json(number):
-    coming_up = list(priorityQueue.queue)
-    coming_up.extend(list(backgroundQueue.queue))
+    coming_up = get_coming_up()
     return json.dumps({
         'number': {
             'description': current_number.description,
