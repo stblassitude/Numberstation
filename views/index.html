@@ -4,61 +4,7 @@
     <title>Panumba Numberstation</title>
     <!--meta http-equiv="refresh" content="5"-->
     <script src="/static/main.js"></script>
-    <style>
-        body {
-            background-color: black;
-
-            height: 100vh;
-            margin: 0;
-            overflow: auto;
-            padding: 2rem;
-            color: #0f0;
-            font-family: 'Inconsolata', monospace;
-            font-size: 1.3rem;
-            text-shadow: 0 0 5px #C8C8C8;
-        }
-
-        #current {
-            font: 48px 'Inconsolata', monospace;
-            text-align: center;
-        }
-
-        #current_number {
-            padding: 8px 12px;
-            font: 200% 'Arial Black', Arial, sans-serif;
-        }
-
-        .qr {
-            text-align: center;
-            float: right;
-        }
-        .qr img {
-            width: 50%;
-        }
-
-        .blinking {
-            color: green;
-            font-weight: bold;
-
-
-            animation: blinkingCursor 1s infinite;
-        }
-
-        @keyframes blinkingCursor {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
-        }
-        #current_description {
-            min-height: 2em;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/main.css">
 </head>
 
 <body>
@@ -80,20 +26,30 @@
     <div class="explanation">
         <h2>Displaying your own number</h2>
         <p>
-            To display your own number, request the url <a href="/number">https://panumba.de/number</a> with these query string parameters:
+            Request the url <a href="/number">https://panumba.de/number</a> with these query string parameters:
         </p>
+        <form action="/number">
         <ul>
-            <li>n: the number to display. The system can only display integers, but they can be negative. Up to 11
-                digits are available.
+            <li><input id="n" type="text" name="n" value="12345678901"/><br>
+                <label for="n">n: the number to display. The system can only display integers, but they can be negative. Up to 11
+                    digits are available.</label>
             </li>
-            <li>d: description of your number.</li>
-            <li>r, g, b: the color your number should be displayed in. Optional; if you leave it off, you will get a
-                random color.
+            <li><input id="d" type="text" name="d" value="all digits"/><br>
+                <label for="d">d: description of your number.</label>
             </li>
-            <li>i: increment: if your number changes, then give the change per second. The number will be incremented by
-                this value per second from the time you submit your number.
+            <li><input class="input__rgb" id="r" type="text" name="r" value="255"/>
+                <input class="input__rgb" id="g" type="text" name="g" value="255"/>
+                <input class="input__rgb" id="b" type="text" name="b" value="0"/><br>
+                <label for="r">r, g, b: the color your number should be displayed in. Optional; if you leave it off, you will get a
+                    random color.</label>
+            </li>
+            <li><input id="i" type="text" name="i" value="1"/><br>
+                <label for="i">i: increment: if your number changes, then give the change per second. The number will be incremented by
+                this value per second from the time you submit your number.</label>
             </li>
         </ul>
+            <input type="submit" value="show my number" />
+        </form>
     </div>
 </body>
 
