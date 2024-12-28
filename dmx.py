@@ -9,7 +9,7 @@ from animation import Animation, Off, RandomSingle, Steady, FadeTo, RotatingRain
 
 
 def ledlog(value):
-    return int(pow(float(value) / 255.0, 2) * 255)
+    return int(pow(float(value) / 255.0, 2) * 64)
 
 
 class RGB:
